@@ -137,6 +137,25 @@
                     25 Aug 2026
                 </div>
 
+                <div class="user-auth-widget" id="userAuthWidget" style="display:flex;align-items:center;gap:10px;">
+                    <button
+                        class="primary-button"
+                        id="openAuthModalBtn"
+                        style="padding:6px 14px;font-size:13px;display:flex;align-items:center;gap:6px;">
+                        <span>🔑</span>
+                        <span>Sign In</span>
+                    </button>
+                    <div id="userLoggedInContainer" style="display:none;align-items:center;gap:8px;">
+                        <span id="userBadge" style="background:var(--primary-light);color:var(--primary);padding:5px 12px;border-radius:20px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:5px;">
+                            <span>👤</span>
+                            <span id="currentUserName">User</span>
+                        </span>
+                        <button class="icon-button" id="logoutBtn" title="Logout" style="font-size:14px;">
+                            🚪
+                        </button>
+                    </div>
+                </div>
+
             </div>
 
         </header>
@@ -1957,6 +1976,14 @@
 
             </button>
 
+            <button
+                class="danger-button"
+                id="deleteTransactionBtn">
+
+                Delete Transaction
+
+            </button>
+
         </div>
 
     </div>
@@ -2049,7 +2076,162 @@
 
 
 <!-- =========================================================
-     JAVASCRIPT WILL BE ADDED IN PART 3
+     AUTHENTICATION MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="authModal">
+
+    <div class="modal small-modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h2 id="authModalTitle">Sign In</h2>
+                <p id="authModalSubtitle">Access your cloud-synced budget records</p>
+            </div>
+
+            <button
+                class="close-modal"
+                data-close-modal="authModal">
+                ×
+            </button>
+
+        </div>
+
+        <!-- AUTH TABS -->
+        <div style="display:flex;gap:10px;margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:10px;">
+            <button
+                type="button"
+                id="tabLoginBtn"
+                style="flex:1;padding:8px 0;background:none;border:none;font-weight:600;color:var(--primary);border-bottom:2px solid var(--primary);cursor:pointer;">
+                Sign In
+            </button>
+            <button
+                type="button"
+                id="tabRegisterBtn"
+                style="flex:1;padding:8px 0;background:none;border:none;font-weight:600;color:var(--text-secondary);cursor:pointer;">
+                Create Account
+            </button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form id="loginForm">
+
+            <div class="form-group">
+                <label for="loginEmail">Email Address</label>
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="e.g. name@example.com"
+                    required
+                    autocomplete="email">
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                    required
+                    autocomplete="current-password">
+            </div>
+
+            <div class="modal-actions" style="margin-top:20px;">
+                <button
+                    type="button"
+                    class="secondary-button"
+                    data-close-modal="authModal">
+                    Cancel
+                </button>
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="loginSubmitBtn">
+                    Sign In
+                </button>
+            </div>
+
+            <p style="margin-top:15px;text-align:center;font-size:13px;color:var(--text-secondary);">
+                Don't have an account?
+                <a href="#" id="switchToRegisterLink" style="color:var(--primary);font-weight:600;">Create one</a>
+            </p>
+
+        </form>
+
+        <!-- REGISTER FORM -->
+        <form id="registerForm" style="display:none;">
+
+            <div class="form-group">
+                <label for="registerName">Full Name</label>
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="e.g. Deepraj Mukhopadhyay"
+                    required
+                    autocomplete="name">
+            </div>
+
+            <div class="form-group">
+                <label for="registerEmail">Email Address</label>
+                <input
+                    type="email"
+                    id="registerEmail"
+                    placeholder="e.g. name@example.com"
+                    required
+                    autocomplete="email">
+            </div>
+
+            <div class="form-group">
+                <label for="registerPassword">Password (min 6 characters)</label>
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Create a strong password"
+                    required
+                    minlength="6"
+                    autocomplete="new-password">
+            </div>
+
+            <div class="form-group">
+                <label for="registerMembers">Room Members (comma separated)</label>
+                <input
+                    type="text"
+                    id="registerMembers"
+                    value="Deepraj, Anant, Ravi, Baijnath, Kunal">
+            </div>
+
+            <div class="modal-actions" style="margin-top:20px;">
+                <button
+                    type="button"
+                    class="secondary-button"
+                    data-close-modal="authModal">
+                    Cancel
+                </button>
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="registerSubmitBtn">
+                    Create Account
+                </button>
+            </div>
+
+            <p style="margin-top:15px;text-align:center;font-size:13px;color:var(--text-secondary);">
+                Already have an account?
+                <a href="#" id="switchToLoginLink" style="color:var(--primary);font-weight:600;">Sign in</a>
+            </p>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
 ========================================================= -->
 
 <script src="script.js"></script>
