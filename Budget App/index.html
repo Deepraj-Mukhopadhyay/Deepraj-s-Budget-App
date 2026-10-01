@@ -1,0 +1,2058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PG Finance Manager</title>
+
+    <!-- CSS will be added in Part 2 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     APP CONTAINER
+========================================================= -->
+
+<div id="app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="app-logo">
+            <div class="logo-icon">₹</div>
+
+            <div>
+                <h2>PG Finance</h2>
+                <span>Room Manager</span>
+            </div>
+        </div>
+
+        <nav class="navigation">
+
+            <button class="nav-item active" data-section="dashboard">
+                <span>🏠</span>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item" data-section="contributions">
+                <span>💰</span>
+                <span>Contributions</span>
+            </button>
+
+            <button class="nav-item" data-section="expenses">
+                <span>🛒</span>
+                <span>Daily Expenses</span>
+            </button>
+
+            <button class="nav-item" data-section="members">
+                <span>👥</span>
+                <span>Members</span>
+            </button>
+
+            <button class="nav-item" data-section="balances">
+                <span>⚖️</span>
+                <span>Balances</span>
+            </button>
+
+            <button class="nav-item" data-section="settlement">
+                <span>🔄</span>
+                <span>Settlement</span>
+            </button>
+
+            <button class="nav-item" data-section="transactions">
+                <span>📜</span>
+                <span>Transactions</span>
+            </button>
+
+            <button class="nav-item" data-section="history">
+                <span>📅</span>
+                <span>Daily History</span>
+            </button>
+
+            <button class="nav-item" data-section="statistics">
+                <span>📊</span>
+                <span>Statistics</span>
+            </button>
+
+            <button class="nav-item" data-section="reports">
+                <span>📈</span>
+                <span>Reports</span>
+            </button>
+
+            <button class="nav-item" data-section="settings">
+                <span>⚙️</span>
+                <span>Settings</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <span>5 Members</span>
+            <small>All records are permanent</small>
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <button class="menu-button" id="menuButton">
+                ☰
+            </button>
+
+            <div class="page-heading">
+
+                <h1 id="pageTitle">Dashboard</h1>
+
+                <p id="pageSubtitle">
+                    Manage your PG finances
+                </p>
+
+            </div>
+
+            <div class="topbar-actions">
+
+                <button
+                    class="icon-button"
+                    id="notificationButton"
+                    title="Notifications">
+                    🔔
+                </button>
+
+                <div class="current-date" id="currentDate">
+                    25 Aug 2026
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             CONTENT SECTIONS
+        ================================================== -->
+
+        <div class="content-area">
+
+
+            <!-- =================================================
+                 DASHBOARD
+            ================================================== -->
+
+            <section
+                class="page-section active"
+                id="dashboard-section">
+
+                <div class="welcome-section">
+
+                    <div>
+
+                        <h2>PG Finance Dashboard</h2>
+
+                        <p>
+                            Track contributions, expenses,
+                            balances and settlements.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="primary-button"
+                        id="quickExpenseButton">
+
+                        + Add Expense
+
+                    </button>
+
+                </div>
+
+
+                <!-- MAIN SUMMARY CARDS -->
+
+                <div class="summary-grid">
+
+                    <div class="summary-card fund-card">
+
+                        <div class="card-icon">🏦</div>
+
+                        <div class="card-content">
+
+                            <span>Common Fund</span>
+
+                            <h2 id="dashboardFund">
+                                ₹0.00
+                            </h2>
+
+                            <small>
+                                Available balance
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="card-icon">💰</div>
+
+                        <div class="card-content">
+
+                            <span>Total Contributions</span>
+
+                            <h2 id="dashboardContributions">
+                                ₹0.00
+                            </h2>
+
+                            <small>
+                                This month
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="card-icon">🛒</div>
+
+                        <div class="card-content">
+
+                            <span>Total Expenses</span>
+
+                            <h2 id="dashboardExpenses">
+                                ₹0.00
+                            </h2>
+
+                            <small>
+                                This month
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="card-icon">⚖️</div>
+
+                        <div class="card-content">
+
+                            <span>Pending Settlement</span>
+
+                            <h2 id="dashboardPending">
+                                ₹0.00
+                            </h2>
+
+                            <small>
+                                Amount to settle
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Quick Actions</h2>
+                        <p>Frequently used functions</p>
+                    </div>
+
+                </div>
+
+
+                <div class="quick-action-grid">
+
+                    <button
+                        class="action-card"
+                        data-open-modal="contributionModal">
+
+                        <span class="action-icon">💰</span>
+
+                        <strong>Add Contribution</strong>
+
+                        <small>
+                            Add money to common fund
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="action-card"
+                        data-open-modal="expenseModal">
+
+                        <span class="action-icon">🛒</span>
+
+                        <strong>Add Expense</strong>
+
+                        <small>
+                            Record a new expense
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="action-card"
+                        data-section-link="balances">
+
+                        <span class="action-icon">⚖️</span>
+
+                        <strong>Check Balances</strong>
+
+                        <small>
+                            See who owes whom
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="action-card"
+                        data-section-link="settlement">
+
+                        <span class="action-icon">🔄</span>
+
+                        <strong>Settlement</strong>
+
+                        <small>
+                            Calculate payments
+                        </small>
+
+                    </button>
+
+                </div>
+
+
+                <!-- DASHBOARD LOWER AREA -->
+
+                <div class="dashboard-grid">
+
+                    <!-- Recent Transactions -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <h2>Recent Transactions</h2>
+
+                                <p>
+                                    Latest financial activity
+                                </p>
+
+                            </div>
+
+                            <button
+                                class="text-button"
+                                data-section-link="transactions">
+
+                                View All
+
+                            </button>
+
+                        </div>
+
+                        <div
+                            class="transaction-list"
+                            id="dashboardTransactions">
+
+                            <div class="empty-state">
+
+                                <div>📜</div>
+
+                                <h3>No transactions yet</h3>
+
+                                <p>
+                                    Your transactions will
+                                    appear here.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Member Balances -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <h2>Member Balances</h2>
+
+                                <p>
+                                    Current financial position
+                                </p>
+
+                            </div>
+
+                            <button
+                                class="text-button"
+                                data-section-link="balances">
+
+                                Details
+
+                            </button>
+
+                        </div>
+
+                        <div
+                            class="member-balance-list"
+                            id="dashboardBalances">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CONTRIBUTIONS
+            ================================================== -->
+
+            <section
+                class="page-section"
+                id="contributions-section">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>Contributions</h2>
+
+                        <p>
+                            Track money added by each member
+                            to the common fund.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="primary-button"
+                        data-open-modal="contributionModal">
+
+                        + Add Contribution
+
+                    </button>
+
+                </div>
+
+
+                <div class="summary-grid">
+
+                    <div class="summary-card">
+
+                        <span>Total Contributions</span>
+
+                        <h2 id="contributionTotal">
+                            ₹0.00
+                        </h2>
+
+                    </div>
+
+                    <div class="summary-card">
+
+                        <span>This Month</span>
+
+                        <h2 id="contributionMonthTotal">
+                            ₹0.00
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <h2>Contribution History</h2>
+
+                        <div class="filter-group">
+
+                            <select id="contributionMemberFilter">
+
+                                <option value="all">
+                                    All Members
+                                </option>
+
+                                <option value="Deepraj">
+                                    Deepraj
+                                </option>
+
+                                <option value="Anant">
+                                    Anant
+                                </option>
+
+                                <option value="Ravi">
+                                    Ravi
+                                </option>
+
+                                <option value="Baijnath">
+                                    Baijnath
+                                </option>
+
+                                <option value="Kunal">
+                                    Kunal
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Date</th>
+                                    <th>Member</th>
+                                    <th>Amount</th>
+                                    <th>Payment Method</th>
+                                    <th>Note</th>
+                                    <th>Status</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="contributionTableBody">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 EXPENSES
+            ================================================== -->
+
+            <section
+                class="page-section"
+                id="expenses-section">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>Daily Expenses</h2>
+
+                        <p>
+                            Record every common room expense.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="primary-button"
+                        data-open-modal="expenseModal">
+
+                        + Add Expense
+
+                    </button>
+
+                </div>
+
+
+                <div class="summary-grid">
+
+                    <div class="summary-card">
+
+                        <span>Total Expenses</span>
+
+                        <h2 id="expenseTotal">
+                            ₹0.00
+                        </h2>
+
+                    </div>
+
+                    <div class="summary-card">
+
+                        <span>This Month</span>
+
+                        <h2 id="expenseMonthTotal">
+                            ₹0.00
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>Expense History</h2>
+
+                            <p>
+                                Every expense remains permanently
+                                recorded.
+                            </p>
+
+                        </div>
+
+                        <div class="filter-group">
+
+                            <select id="expenseCategoryFilter">
+
+                                <option value="all">
+                                    All Categories
+                                </option>
+
+                                <option value="grocery">
+                                    Grocery
+                                </option>
+
+                                <option value="food">
+                                    Food
+                                </option>
+
+                                <option value="electricity">
+                                    Electricity
+                                </option>
+
+                                <option value="water">
+                                    Water
+                                </option>
+
+                                <option value="cleaning">
+                                    Cleaning
+                                </option>
+
+                                <option value="room">
+                                    Room
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Date</th>
+                                    <th>Item</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th>Paid By</th>
+                                    <th>Shared By</th>
+                                    <th>Actions</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="expenseTableBody">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MEMBERS
+            ================================================== -->
+
+            <section
+                class="page-section"
+                id="members-section">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>Members</h2>
+
+                        <p>
+                            Financial overview of all five members.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="members-grid"
+                    id="membersGrid">
+
+                    <!-- JS will generate members -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 BALANCES
+            ================================================== -->
+
+            <section
+                class="page-section"
+                id="balances-section">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>Balances</h2>
+
+                        <p>
+                            See exactly who has paid more or less
+                            than their fair share.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="balance-summary">
+
+                    <div class="balance-box positive">
+
+                        <span>Total to Receive</span>
+
+                        <strong id="totalToReceive">
+                            ₹0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="balance-box negative">
+
+                        <span>Total to Pay</span>
+
+                        <strong id="totalToPay">
+                            ₹0.00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>Member Balances</h2>
+
+                            <p>
+                                Positive = should receive money
+                                <br>
+                                Negative = needs to pay money
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="balance-detail-list"
+                        id="balanceDetailList">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SETTLEMENT
+            ================================================== -->
+
+            <section
+                class="page-section"
+                id="settlement-section">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>Settlement</h2>
+
+                        <p>
+                            Automatically calculate the simplest
+                            way to settle everyone.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="primary-button"
+                        id="calculateSettlementButton">
+
+                        Calculate Settlement
+
+                    </button>
+
+                </div>
+
+
+                <div class="settlement-explanation">
+
+                    <div class="info-icon">ℹ️</div>
+
+                    <div>
+
+                        <strong>
+                            How settlement works
+                        </strong>
+
+                        <p>
+                            The app calculates each person's
+                            fair share and determines the minimum
+                            number of payments required to settle
+                            all balances.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="settlement-list"
+                    id="settlementList">
+
+                    <div class="empty-state">
+
+                        <div>🔄</div>
+
+                        <h3>No settlement required</h3>
+
+                        <p>
+                            Calculate settlement after adding
+                            expenses.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 TRANSACTIONS
+            ================================================== -->
+
+            <section
+                class="page-section"
+                id="transactions-section">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>Transactions</h2>
+
+                        <p>
+                            Complete permanent financial record.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="transaction-warning">
+
+                    <span>🔒</span>
+
+                    <div>
+
+                        <strong>
+                            Permanent Transaction History
+                        </strong>
+
+                        <p>
+                            Transactions are never permanently
+                            deleted. Corrections are recorded
+                            separately to preserve the audit trail.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>All Transactions</h2>
+
+                        </div>
+
+                        <div class="filter-group">
+
+                            <select id="transactionTypeFilter">
+
+                                <option value="all">
+                                    All Transactions
+                                </option>
+
+                                <option value="contribution">
+                                    Contributions
+                                </option>
+
+                                <option value="expense">
+                                    Expenses
+                                </option>
+
+                                <option value="settlement">
+                                    Settlements
+                                </option>
+
+                                <option value="correction">
+                                    Corrections
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Date & Time</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Person</th>
+                                    <th>Reference ID</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="transactionTableBody">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 DAILY HISTORY
+            ================================================== -->
+
+            <section
+                class="page-section"
+                id="history-section">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>Daily History</h2>
+
+                        <p>
+                            View everything that happened on a
+                            particular day.
+                        </p>
+
+                    </div>
+
+                    <input
+                        type="date"
+                        id="historyDate">
+
+                </div>
+
+
+                <div
+                    class="daily-history"
+                    id="dailyHistory">
+
+                    <div class="empty-state">
+
+                        <div>📅</div>
+
+                        <h3>Select a date</h3>
+
+                        <p>
+                            Select a date to view its complete
+                            financial activity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <section
+                class="page-section"
+                id="statistics-section">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>Statistics</h2>
+
+                        <p>
+                            Understand where your room money is
+                            being spent.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="statistics-grid">
+
+                    <div class="stat-card">
+
+                        <span>Total Spending</span>
+
+                        <strong id="statTotalSpending">
+                            ₹0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <span>Average Daily Spending</span>
+
+                        <strong id="statAverageDaily">
+                            ₹0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <span>Highest Expense</span>
+
+                        <strong id="statHighestExpense">
+                            ₹0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <span>Total Transactions</span>
+
+                        <strong id="statTransactionCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="statistics-grid">
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <h2>Spending by Category</h2>
+
+                        </div>
+
+                        <div
+                            id="categoryStatistics"
+                            class="statistics-list">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <h2>Spending by Member</h2>
+
+                        </div>
+
+                        <div
+                            id="memberStatistics"
+                            class="statistics-list">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 REPORTS
+            ================================================== -->
+
+            <section
+                class="page-section"
+                id="reports-section">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>Reports</h2>
+
+                        <p>
+                            Generate detailed financial reports.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="report-controls">
+
+                    <div class="form-group">
+
+                        <label>Report Month</label>
+
+                        <input
+                            type="month"
+                            id="reportMonth">
+
+                    </div>
+
+                    <button
+                        class="primary-button"
+                        id="generateReportButton">
+
+                        Generate Report
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="report-container"
+                    id="reportContainer">
+
+                    <div class="empty-state">
+
+                        <div>📈</div>
+
+                        <h3>No report generated</h3>
+
+                        <p>
+                            Select a month and generate a report.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SETTINGS
+            ================================================== -->
+
+            <section
+                class="page-section"
+                id="settings-section">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>Settings</h2>
+
+                        <p>
+                            Manage your PG finance application.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Members -->
+
+                <div class="settings-panel">
+
+                    <div class="settings-header">
+
+                        <div>
+
+                            <h3>Room Members</h3>
+
+                            <p>
+                                These five members are currently
+                                registered.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="settings-members"
+                        id="settingsMembers">
+
+                    </div>
+
+                </div>
+
+
+                <!-- Backup -->
+
+                <div class="settings-panel">
+
+                    <div class="settings-header">
+
+                        <div>
+
+                            <h3>Data Backup</h3>
+
+                            <p>
+                                Protect your financial records.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-actions">
+
+                        <button
+                            class="secondary-button"
+                            id="exportDataButton">
+
+                            📥 Export Backup
+
+                        </button>
+
+
+                        <button
+                            class="secondary-button"
+                            id="importDataButton">
+
+                            📤 Import Backup
+
+                        </button>
+
+                        <input
+                            type="file"
+                            id="importFileInput"
+                            accept=".json"
+                            hidden>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Permanent Data -->
+
+                <div class="settings-panel danger-panel">
+
+                    <div class="settings-header">
+
+                        <div>
+
+                            <h3>Data Management</h3>
+
+                            <p>
+                                Financial records are permanent.
+                                Use reset only if you intentionally
+                                want to start a new database.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="danger-button"
+                        id="archiveMonthButton">
+
+                        📦 Archive Current Month
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     CONTRIBUTION MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="contributionModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>Add Contribution</h2>
+
+                <p>
+                    Add money to the common PG fund.
+                </p>
+
+            </div>
+
+            <button
+                class="close-modal"
+                data-close-modal="contributionModal">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="contributionForm">
+
+            <div class="form-group">
+
+                <label for="contributionMember">
+                    Member
+                </label>
+
+                <select
+                    id="contributionMember"
+                    required>
+
+                    <option value="">
+                        Select member
+                    </option>
+
+                    <option value="Deepraj">
+                        Deepraj
+                    </option>
+
+                    <option value="Anant">
+                        Anant
+                    </option>
+
+                    <option value="Ravi">
+                        Ravi
+                    </option>
+
+                    <option value="Baijnath">
+                        Baijnath
+                    </option>
+
+                    <option value="Kunal">
+                        Kunal
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="contributionAmount">
+                    Amount
+                </label>
+
+                <div class="amount-input">
+
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="contributionAmount"
+                        min="0.01"
+                        step="0.01"
+                        placeholder="0.00"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="contributionDate">
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="contributionDate"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="contributionPaymentMethod">
+                    Payment Method
+                </label>
+
+                <select
+                    id="contributionPaymentMethod">
+
+                    <option value="cash">
+                        Cash
+                    </option>
+
+                    <option value="upi">
+                        UPI
+                    </option>
+
+                    <option value="bank">
+                        Bank Transfer
+                    </option>
+
+                    <option value="other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="contributionNote">
+                    Note
+                </label>
+
+                <textarea
+                    id="contributionNote"
+                    placeholder="Optional note...">
+                </textarea>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    data-close-modal="contributionModal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-button">
+
+                    Add Contribution
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     EXPENSE MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="expenseModal">
+
+    <div class="modal large-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>Add Expense</h2>
+
+                <p>
+                    Record a shared room expense.
+                </p>
+
+            </div>
+
+            <button
+                class="close-modal"
+                data-close-modal="expenseModal">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="expenseForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="expenseItem">
+                        Item / Description
+                    </label>
+
+                    <input
+                        type="text"
+                        id="expenseItem"
+                        placeholder="e.g. Rice, vegetables"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="expenseAmount">
+                        Amount
+                    </label>
+
+                    <div class="amount-input">
+
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            id="expenseAmount"
+                            min="0.01"
+                            step="0.01"
+                            placeholder="0.00"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="expenseCategory">
+                        Category
+                    </label>
+
+                    <select
+                        id="expenseCategory"
+                        required>
+
+                        <option value="">
+                            Select category
+                        </option>
+
+                        <option value="grocery">
+                            Grocery
+                        </option>
+
+                        <option value="food">
+                            Food
+                        </option>
+
+                        <option value="electricity">
+                            Electricity
+                        </option>
+
+                        <option value="water">
+                            Water
+                        </option>
+
+                        <option value="cleaning">
+                            Cleaning
+                        </option>
+
+                        <option value="room">
+                            Room
+                        </option>
+
+                        <option value="other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="expenseDate">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="expenseDate"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="expensePaidBy">
+                    Who Paid?
+                </label>
+
+                <select
+                    id="expensePaidBy"
+                    required>
+
+                    <option value="">
+                        Select person
+                    </option>
+
+                    <option value="Deepraj">
+                        Deepraj
+                    </option>
+
+                    <option value="Anant">
+                        Anant
+                    </option>
+
+                    <option value="Ravi">
+                        Ravi
+                    </option>
+
+                    <option value="Baijnath">
+                        Baijnath
+                    </option>
+
+                    <option value="Kunal">
+                        Kunal
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- SHARING -->
+
+            <div class="sharing-section">
+
+                <div class="sharing-header">
+
+                    <div>
+
+                        <h3>Who Should Share This Expense?</h3>
+
+                        <p>
+                            Select the members who should be
+                            charged for this expense.
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="text-button"
+                        id="selectAllMembers">
+
+                        Select All
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="member-checkbox-grid">
+
+                    <label class="member-checkbox">
+
+                        <input
+                            type="checkbox"
+                            name="expenseShare"
+                            value="Deepraj"
+                            checked>
+
+                        <span>Deepraj</span>
+
+                    </label>
+
+
+                    <label class="member-checkbox">
+
+                        <input
+                            type="checkbox"
+                            name="expenseShare"
+                            value="Anant"
+                            checked>
+
+                        <span>Anant</span>
+
+                    </label>
+
+
+                    <label class="member-checkbox">
+
+                        <input
+                            type="checkbox"
+                            name="expenseShare"
+                            value="Ravi"
+                            checked>
+
+                        <span>Ravi</span>
+
+                    </label>
+
+
+                    <label class="member-checkbox">
+
+                        <input
+                            type="checkbox"
+                            name="expenseShare"
+                            value="Baijnath"
+                            checked>
+
+                        <span>Baijnath</span>
+
+                    </label>
+
+
+                    <label class="member-checkbox">
+
+                        <input
+                            type="checkbox"
+                            name="expenseShare"
+                            value="Kunal"
+                            checked>
+
+                        <span>Kunal</span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="expense-preview">
+
+                <span>Estimated share per person</span>
+
+                <strong id="expenseSharePreview">
+                    ₹0.00
+                </strong>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="expenseNote">
+                    Note
+                </label>
+
+                <textarea
+                    id="expenseNote"
+                    placeholder="Optional note...">
+                </textarea>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    data-close-modal="expenseModal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-button">
+
+                    Save Expense
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TRANSACTION DETAILS MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="transactionDetailsModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>Transaction Details</h2>
+
+                <p>
+                    Complete transaction information.
+                </p>
+
+            </div>
+
+            <button
+                class="close-modal"
+                data-close-modal="transactionDetailsModal">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="transactionDetailsContent"
+            class="transaction-details">
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="secondary-button"
+                data-close-modal="transactionDetailsModal">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     NOTIFICATION
+========================================================= -->
+
+<div
+    class="toast-container"
+    id="toastContainer">
+
+</div>
+
+
+<!-- =========================================================
+     CONFIRMATION MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="confirmationModal">
+
+    <div class="modal small-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="confirmationTitle">
+                    Confirm Action
+                </h2>
+
+            </div>
+
+            <button
+                class="close-modal"
+                data-close-modal="confirmationModal">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="confirmation-content">
+
+            <div
+                class="confirmation-icon"
+                id="confirmationIcon">
+
+                ⚠️
+
+            </div>
+
+            <p id="confirmationMessage">
+                Are you sure?
+            </p>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="secondary-button"
+                data-close-modal="confirmationModal">
+
+                Cancel
+
+            </button>
+
+            <button
+                class="danger-button"
+                id="confirmActionButton">
+
+                Confirm
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT WILL BE ADDED IN PART 3
+========================================================= -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
